@@ -1,0 +1,58 @@
+#!/usr/bin/python
+"""
+    web_flashcards reads /var/www/html/docs/net_arconyms.txt and iterates through
+    each line with an acronym and acronym definition (delimited by a comma)then
+    displays each on a web page one at a time.
+    The acronym is the first field displayed on the web page for 5 seconds, then the
+    definition of that acronym is displayed below for 10 seconds before moving on to
+    the next line in the file.
+"""
+import time
+
+while True:
+     with open('/var/www/html/docs/net_acronyms.txt') as net_acron_file:
+          number_of_lines = len(net_acron_file.readlines())
+          net_acron_file.seek(0)
+          each_line = net_acron_file.readlines()
+          i = 0
+          j = 1
+          while i < number_of_lines:
+              split_each_line = each_line[i].split(",")
+              acronymn = split_each_line[0]
+              acronymn_definition = split_each_line[1]
+
+              html_file = open('/var/www/html/scripts/net_acronyms.html', mode="w")
+              new_acronym = "<html>\n<head>\n"
+              new_acronym += "<meta http-equiv=\"refresh\" content=\"5\">\n"
+              new_acronym += "</head>\n<body>"
+              new_acronym += "<center>\n"
+              new_acronym += "<table width=800 border=0><tr>\n<td>\n<h4>" + str(j) + " of " + str(number_of_lines) \
+			     + " <a href=../>Home</a>\n" \
+				     + "</h4>\n<br>\n<font size=5 color=blue>" + str(acronymn) + "</font>\n</td>\n</tr>\n</table>" \
+                             + "\n</body>\n</html>\n"
+              html_file.write(new_acronym)
+              html_file.close()
+              print(acronymn)
+              time.sleep(5)
+
+              html_file = open('/var/www/html/scripts/net_acronyms.html', mode="w")
+              new_definition = "<html><head>\n"
+              new_definition += "<meta http-equiv=\"refresh\" content=\"10\">\n"
+              new_definition += "</head>\n<body>\n"
+              new_definition += "<center>\n" 
+              new_definition += "<table width=800 border=0>\n<tr>\n<td>\n<h4>" + str(j) + " of " + str(number_of_lines) \
+				+ " <a href=../index.html>Home</a>\n" \
+			        + "</h4><br><font size=5 color=blue>" + str(acronymn) + "</font>\n"
+              new_definition += "<br>\n<tr>\n<td>\n<font size=4>" + str(acronymn_definition) + "</font>\n</td>\n</tr>\n</table>"
+              new_definition += "</body>\n</html>\n"
+              html_file.write(new_definition)
+              html_file.close()
+              print(new_definition)
+              time.sleep(10)
+ 
+              i+=1
+              j+=1
+              html_file.close()
+
+time.sleep(60)
+
