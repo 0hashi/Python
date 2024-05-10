@@ -1,6 +1,14 @@
 #!/usr/bin/python
 #
+"""
+    Script: sss_web_flashcards
+    Purpose: Init script for web_flashcards. This script will start, stop or check the status of
+             the web_flashcards daemon process that manages the content displayed on a web page.
 
+    This script is provided "as is", without warranty or support of any kind. Permission is granted,
+    free of charge, to any person obtaining a copy of this script, to modify its contents without
+    restriction, merge, publish or distribute. Enjoy!
+"""
 import sys
 import os
 import subprocess
