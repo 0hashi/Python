@@ -1,12 +1,5 @@
 #!/usr/bin/python
 #
-"""
-    Script: start_stop_wfc.py (wfc = web_flashcards)
-    Date: May 2024
-    
-    A simple Python administration script that starts, stops, or check the
-    status of /var/www/cgi-bin/web_flashcards script on ohashisan.com.
-"""
 
 import sys
 import os
@@ -31,7 +24,7 @@ process_pid = process_pid.replace("\\n'", "")
 
 if action == "start":
     print("Starting web_flashcards")
-    cmd_exec = "nohup nice -5 /var/www/cgi-bin/web_flashcards &"
+    cmd_exec = "nohup nice -5 /var/www/cgi-bin/web_flashcards >/dev/null 2>&1 &"
     os.system(cmd_exec)
 
 elif action == "stop":
@@ -52,4 +45,3 @@ elif action == "status":
 
 elif action != "start" or action != "stop":
     usage()
-
