@@ -1,4 +1,7 @@
 #!/usr/bin/python
+#
+# Paul Ohashi
+#
 """
     Purpose: The purpose of this script is to maintain uniformity of the web pages on ohashisan.com, making sure
     all web pages have the same look and feel and the same default site links. 
